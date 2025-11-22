@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طباعة التذاكر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            .ticket { page-break-inside: avoid; }
+        }
+        .ticket {
+            width: 5cm;
+            height: 5cm;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-6xl mx-auto bg-white rounded shadow p-6">
+        <h1 class="text-3xl font-bold mb-6">طباعة التذاكر</h1>
+        
+        <div class="no-print mb-6">
+            <select id="clinicSelect" class="p-2 border rounded mb-4">
+                <option value="">اختر العيادة</option>
+            </select>
+            <div class="flex gap-4 mb-4">
+                <input id="startNumber" type="number" placeholder="من رقم" class="p-2 border rounded">
+                <input id="endNumber" type="number" placeholder="إلى رقم" class="p-2 border rounded">
+            </div>
+            <button onclick="generateTickets()" class="bg-blue-600 text-white px-4 py-2 rounded">إنشاء التذاكر</button>
+            <button onclick="window.print()" class="bg-green-600 text-white px-4 py-2 rounded">طباعة</button>
+        </div>
+
+        <div id="ticketsContainer" class="grid grid-cols-4 gap-4">
+            <!-- التذاكر ستُملأ هنا -->
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="js/print.js"></script>
+</body>
+</html>
