@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة التحكم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- نموذج تسجيل الدخول -->
+    <div id="loginForm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow">
+            <h2 class="text-2xl font-bold mb-4">اختر العيادة</h2>
+            <select id="clinicSelect" class="w-full p-2 border rounded mb-4">
+                <option value="">اختر العيادة</option>
+            </select>
+            <input id="passwordInput" type="password" placeholder="كلمة المرور" class="w-full p-2 border rounded mb-4">
+            <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded">دخول</button>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="controlPanel" class="hidden p-8">
+        <div class="max-w-4xl mx-auto bg-white rounded shadow p-6">
+            <h1 class="text-3xl font-bold mb-6">تحكم العيادة: <span id="currentClinic"></span></h1>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <button onclick="nextPatient()" class="bg-green-600 text-white p-4 rounded text-xl">العميل التالي</button>
+                <button onclick="previousPatient()" class="bg-blue-600 text-white p-4 rounded text-xl">العميل السابق</button>
+                <button onclick="repeatCall()" class="bg-yellow-600 text-white p-4 rounded text-xl">تكرار النداء</button>
+                <button onclick="resetClinic()" class="bg-red-600 text-white p-4 rounded text-xl">تصفير العيادة</button>
+            </div>
+
+            <div class="mb-6">
+                <input id="specificPatientNumber" type="number" placeholder="رقم العميل" class="p-2 border rounded">
+                <button onclick="callSpecificPatientNumber()" class="bg-purple-600 text-white px-4 py-2 rounded">نداء رقم محدد</button>
+            </div>
+
+            <div class="mb-6">
+                <button onclick="emergencyCall()" class="w-full bg-red-800 text-white p-4 rounded text-xl">نداء طوارئ</button>
+            </div>
+
+            <div class="mb-6">
+                <button onclick="toggleClinicStatus()" id="statusBtn" class="w-full bg-gray-600 text-white p-4 rounded text-xl">إيقاف العيادة</button>
+            </div>
+
+            <button onclick="logout()" class="w-full bg-gray-800 text-white p-4 rounded text-xl">خروج</button>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="js/control.js"></script>
+</body>
+</html>
